@@ -1,25 +1,29 @@
 package com.payulatam.banco;
 
-import javax.inject.Inject;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
-import org.springframework.context.annotation.Scope;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import com.payulatam.banco.facade.SystemFacade;
 import com.payulatam.banco.user.bo.UserBo;
 
-@Named
-@Scope("session")
+@Component
+@ManagedBean
+@SessionScoped
 public class UserBean {
 
-	@Inject
-	UserBo userBo;
+	@Autowired
+	private SystemFacade systemFacade;
 
 	public void setUserBo(UserBo userBo) {
-		this.userBo = userBo;
+		//this.userBo = userBo;
 	}
 
 	public String printMsgFromSpring() {
-		return userBo.getMessage();
+		systemFacade.findAllParameters();
+		return "----------";
 	}
 
 }
